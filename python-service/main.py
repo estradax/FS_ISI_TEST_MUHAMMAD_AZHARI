@@ -1,24 +1,34 @@
 import os
+import sys
 import grpc
+import logging
 from concurrent import futures
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
+from services.todo import TodoService
 from grpc_gen import todo_pb2_grpc
-from grpc_gen.todo_pb2_grpc import TodoServicer
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("root")
 
 load_dotenv(".env.local")
 
+HOST = os.getenv("HOST", "localhost:50051")
+
+logger.info("create database engine")
 engine = create_engine(os.getenv("DATABASE_URL"))
 
-class TodoService(TodoServicer):
-  def GetTodos(self, request, context):
-    return super().GetTodos(request, context)
-
 if __name__ == "__main__":
+  logger.info("initialize grpc server")
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-  todo_pb2_grpc.add_TodoServicer_to_server(TodoService(), server)
-  server.add_insecure_port("[::]:" + "50051")
+
+  logger.info("register services")
+  todo_service = TodoService(engine)
+
+  todo_pb2_grpc.add_TodoServicer_to_server(todo_service, server)
+  server.add_insecure_port(HOST)
   server.start()
-  print("Server started, listening on " + "50051")
+  logger.info("server started on %s", HOST)
   server.wait_for_termination()

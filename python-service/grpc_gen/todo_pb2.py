@@ -22,16 +22,37 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ntodo.proto\x1a\x1bgoogle/protobuf/empty.proto2D\n\x04Todo\x12<\n\x08GetTodos\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ntodo.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\x01\n\x0bTodoMessage\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x14\n\x0cis_completed\x18\x03 \x01(\x08\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"D\n\x0fGetTodosRequest\x12\x14\n\x0cis_completed\x18\x01 \x01(\x08\x12\x1b\n\x08ordering\x18\x02 \x01(\x0e\x32\t.Ordering\"/\n\x10GetTodosResponse\x12\x1b\n\x05todos\x18\x01 \x03(\x0b\x32\x0c.TodoMessage\"\"\n\x11\x43reateTodoRequest\x12\r\n\x05title\x18\x01 \x01(\t\"\x14\n\x12\x43reateTodoResponse\"D\n\x11UpdateTodoRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x14\n\x0cis_completed\x18\x03 \x01(\x08\"\x14\n\x12UpdateTodoResponse\"\x1f\n\x11\x44\x65leteTodoRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\x14\n\x12\x44\x65leteTodoResponse*\x1d\n\x08Ordering\x12\x07\n\x03\x41SC\x10\x00\x12\x08\n\x04\x44\x45SC\x10\x01\x32\xe4\x01\n\x04Todo\x12\x31\n\x08GetTodos\x12\x10.GetTodosRequest\x1a\x11.GetTodosResponse\"\x00\x12\x37\n\nCreateTodo\x12\x12.CreateTodoRequest\x1a\x13.CreateTodoResponse\"\x00\x12\x37\n\nUpdateTodo\x12\x12.UpdateTodoRequest\x1a\x13.UpdateTodoResponse\"\x00\x12\x37\n\nDeleteTodo\x12\x12.DeleteTodoRequest\x1a\x13.DeleteTodoResponse\"\x00\x42\x0e\xca\x02\x0b\x41pp\\GrpcGenb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'todo_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  DESCRIPTOR._loaded_options = None
-  _globals['_TODO']._serialized_start=43
-  _globals['_TODO']._serialized_end=111
+  _globals['DESCRIPTOR']._loaded_options = None
+  _globals['DESCRIPTOR']._serialized_options = b'\312\002\013App\\GrpcGen'
+  _globals['_ORDERING']._serialized_start=532
+  _globals['_ORDERING']._serialized_end=561
+  _globals['_TODOMESSAGE']._serialized_start=48
+  _globals['_TODOMESSAGE']._serialized_end=206
+  _globals['_GETTODOSREQUEST']._serialized_start=208
+  _globals['_GETTODOSREQUEST']._serialized_end=276
+  _globals['_GETTODOSRESPONSE']._serialized_start=278
+  _globals['_GETTODOSRESPONSE']._serialized_end=325
+  _globals['_CREATETODOREQUEST']._serialized_start=327
+  _globals['_CREATETODOREQUEST']._serialized_end=361
+  _globals['_CREATETODORESPONSE']._serialized_start=363
+  _globals['_CREATETODORESPONSE']._serialized_end=383
+  _globals['_UPDATETODOREQUEST']._serialized_start=385
+  _globals['_UPDATETODOREQUEST']._serialized_end=453
+  _globals['_UPDATETODORESPONSE']._serialized_start=455
+  _globals['_UPDATETODORESPONSE']._serialized_end=475
+  _globals['_DELETETODOREQUEST']._serialized_start=477
+  _globals['_DELETETODOREQUEST']._serialized_end=508
+  _globals['_DELETETODORESPONSE']._serialized_start=510
+  _globals['_DELETETODORESPONSE']._serialized_end=530
+  _globals['_TODO']._serialized_start=564
+  _globals['_TODO']._serialized_end=792
 # @@protoc_insertion_point(module_scope)

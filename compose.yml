@@ -1,4 +1,25 @@
 services:
+  laravel-service:
+    build: laravel-service/
+    environment:
+      PYTHON_SERVICE: python-service:50051
+      APP_ENV: local
+      APP_KEY: base64:ohvxZXGorI3og5/OnXC+ueroAKy2eeYipX51XDfb0Lw=
+      APP_DEBUG: true
+      DB_CONNECTION: sqlite
+    ports:
+      - "8000:80"
+    depends_on:
+      - python-service
+  python-service:
+    build: python-service/
+    environment:
+      DATABASE_URL: postgresql://todolist:12345678@postgres:5432/todolist
+      HOST: python-service:50051
+    ports:
+      - "50051:50051"
+    depends_on:
+      - postgres
   postgres:
     image: postgres:16.6
     environment:

@@ -1,7 +1,54 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
+option php_namespace = "App\\GrpcGen";
+
+import "google/protobuf/timestamp.proto";
+
+message TodoMessage {
+    string id = 1;
+    string title = 2;
+    bool is_completed = 3; 
+    google.protobuf.Timestamp created_at = 4; 
+    google.protobuf.Timestamp updated_at = 5; 
+}
+
+enum Ordering {
+    ASC = 0;
+    DESC = 1;
+}
+
+message GetTodosRequest {
+    bool is_completed = 1;
+    Ordering ordering = 2;
+}
+
+message GetTodosResponse {
+    repeated TodoMessage todos = 1;
+}
+
+message CreateTodoRequest {
+    string title = 1;
+}
+
+message CreateTodoResponse {}
+
+message UpdateTodoRequest {
+    string id = 1;
+    string title = 2;
+    bool is_completed = 3;
+}
+
+message UpdateTodoResponse {}
+
+message DeleteTodoRequest {
+    string id = 1;
+}
+
+message DeleteTodoResponse {}
 
 service Todo {
-    rpc GetTodos(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc GetTodos(GetTodosRequest) returns (GetTodosResponse) {}
+    rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse) {}
+    rpc UpdateTodo(UpdateTodoRequest) returns (UpdateTodoResponse) {} 
+    rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse) {} 
 }
